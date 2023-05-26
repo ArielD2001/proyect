@@ -60,80 +60,8 @@ $actactive = true;
                             <div class="card">
                                 <div class="card-body">
 
+                                <?php include('config/table-modulo.php') ;?>
 
-                                    <?php if ($filas2 != 0) { ?>
-                                        <div id="tabla-list" class=" flex-wrap d-flex justify-content-center align-items-center mt-3">
-                                        <h4  class="text-start w-100 h3 ps-4 border-bottom pb-2  text-dark">Listas</h4>    
-                                        <table class="table table-sm  mt-3 table-centered mb-5">
-                                                <thead class="text-center bg-dark text-white">
-                                                    <tr>
-                                                        <th>Lista</th>
-                                                        <th> Modulo</th>
-                                                        <th>Semestre</th>
-                                                        <th> Estudiantes</th>
-                                                        <th>Fecha de añadido</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody class="text-center border-bottom">
-                                                    <?php
-                                                    foreach ($listas as $dato) {
-                                                    ?>
-                                                        <tr>
-                                                            <td class="fw-bold fs-5">
-                                                                <a href="listas?lista=<?php echo base64_encode(base64_encode($dato['id'])); ?>" class="text-info"><?php echo ucwords(strtolower($dato['nombre'])); ?></a>
-                                                            </td>
-
-                                                            <td>
-                                                                <?php
-                                                                $modulo = 'SELECT * from modulos WHERE id = ? ';
-                                                                $nmodulo = $mbd->prepare($modulo);
-                                                                $nmodulo->bindParam(1, $dato['id_modulo']);
-                                                                $nmodulo->execute();
-                                                                $nombre = $nmodulo->fetch();
-                                                                echo $nombre['nombre'];
-                                                                // var_dump($resultadocantidad);
-                                                                ?>
-                                                            </td>
-
-                                                            <td>
-                                                                <?php echo $dato['semestre']; ?>
-                                                            </td>
-
-                                                            <td>
-                                                                <?php
-                                                                $cantidad = 'SELECT * from estudiantes WHERE id_lista = ? ';
-                                                                $sentenciacantidad = $mbd->prepare($cantidad);
-                                                                $sentenciacantidad->bindParam(1, $dato['id']);
-                                                                $sentenciacantidad->execute();
-                                                                $filascantidad = $sentenciacantidad->rowCount();
-                                                                echo $filascantidad;
-                                                                ?>
-                                                            </td>
-
-                                                            <td>
-                                                                <?php echo $dato['fecha']; ?>
-                                                            </td>
-                                                            
-
-                                                        </tr>
-
-
-
-                                                    <?php
-                                                    } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    <?php } else { ?>
-                                        <div class="w-100 text-center">
-                                            <img src="../assets/images/layouts/not-found.png" width="200" alt="">
-                                            <h4>No hay listas en este modulo</h4>
-                                            <p>Agregue una nueva en la pagina de Listas</p>
-
-                                            <a href="listas" class="btn btn-success">Agregar</a>
-                                        </div>
-                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

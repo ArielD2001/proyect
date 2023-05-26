@@ -27,7 +27,7 @@ if (isset($_FILES['adjunto'])) {
     parse_str($_POST["data"], $data);
 
     //Se validan que los campos NO esten vacios
-    if (strlen($data['nombre-list']) == 0  || strlen($data['semestre']) == 0 || strlen($data['modulo-list']) == 0) {
+    if (strlen($data['nombre-list']) == 0  || strlen($data['semestre']) == 0 || strlen($data['periodo']) == 0 || strlen($data['modulo-list']) == 0) {
 
 
         //mensaje de error
@@ -41,16 +41,18 @@ if (isset($_FILES['adjunto'])) {
             $nombre = $data['nombre-list'];
             $modulo = $data['modulo-list'];
             $semestre = $data['semestre'];
+            $semestre = $data['periodo'];
             $idglobal = $data['idglobal'];
             $fecha = date('d/m/y');
 
             //Se verifica que la lista a insertar ya no este registrada
-            $consulta = "SELECT * from listas WHERE nombre = ?  AND semestre = ?  AND id_modulo = ? AND id_usuario = ?" ;
+            $consulta = "SELECT * from listas WHERE nombre = ?  AND semestre = ?  AND id_modulo = ? AND periodo = ? AND id_usuario = ?" ;
             $sentencia = $mbd->prepare($consulta);
             $sentencia->bindParam(1, $nombre);
             $sentencia->bindParam(2, $semestre);
             $sentencia->bindParam(3, $modulo);
-            $sentencia->bindParam(4, $idglobal);
+            $sentencia->bindParam(4, $periodo);
+            $sentencia->bindParam(5, $idglobal);
             $sentencia->execute();
             $fila = $sentencia->rowCount();
 
@@ -58,9 +60,9 @@ if (isset($_FILES['adjunto'])) {
             if ($fila < 1) {
 
                 //Al validar que la lista no se encuentra registrada se registra
-                $consultainsert = "INSERT INTO listas(id_modulo, nombre, semestre, fecha, id_usuario) VALUES(?,?,?,?,?)";
+                $consultainsert = "INSERT INTO listas(id_modulo, nombre, semestre, fecha, id_usuario, id_periodo) VALUES(?,?,?,?,?,?)";
                 $sentenciainsert = $mbd->prepare($consultainsert);
-                $sentenciainsert->execute(array($modulo, $nombre, $semestre, $fecha, $idglobal));
+                $sentenciainsert->execute(array($modulo, $nombre, $semestre, $fecha, $idglobal, $periodo));
                 $filas = $sentenciainsert->rowCount();
 
                 //Se verifica que la fila se inserto

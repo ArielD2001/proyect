@@ -239,6 +239,13 @@ $(document).ready( function () {
   eventos();
 } );
 
+$('#select-periodo').on('change',()=>{
+
+  var periodo = $('#select-periodo').val()
+  $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo)
+  
+})
+
 //Se da inicio a las funciones de agregar y eliminar listas
 
 

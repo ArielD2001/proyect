@@ -43,8 +43,6 @@ if (isset($_SESSION['id'])) {
      if($resultado['estado'] != 'activo'){
      header('Location:./config/singout.php');
  
-     }else{
-         header('Location:./ADMIN.php');
      }
 
 }else{

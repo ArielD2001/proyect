@@ -1,3 +1,5 @@
+
+
 var agregar = document.getElementById('agregar-user');
 eye = document.querySelector('#eye');
 input = document.querySelector('#password');
@@ -94,4 +96,8 @@ activadores.forEach(activador =>{
             }
           })
     })
+})
+
+document.getElementById('button-delete-user').addEventListener('click',()=>{
+
 })

@@ -15,6 +15,10 @@ include('config/sqlmodulos.php');
 //Listas
 include('config/sqllistas.php');
 
+//periodos
+
+include('config/periodos.php');
+
 
 //INFORMACION De las listas
 if (isset($_GET['lista'])) {
@@ -120,14 +124,30 @@ if (isset($_GET['lista'])) {
                                     ?>
                                     <div class="row ">
                                         <div class="col-12 text-end">
-                                            <div class="d-flex justify-content-end align-items-center container">
+                                            <div
+                                                class="d-flex row justify-content-between align-items-center container">
+                                                <div class="col-3">
 
-                                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                    data-bs-target="#centermodal"> + Agregar nueva lista</button>
+                                                    <select class="form-select " aria-label="Default select example" id="select-periodo">
+                                                        <option selected value="">Todos los periodos</option>
+                                                        <?php 
+                                                    foreach($periodos as $periodo){
+                                                        ?>
+                                                        <option value="<?php echo $periodo['id']; ?>">
+                                                            <?php echo $periodo['nombre']; ?></option>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col 3"><button type="button" class="btn btn-success"
+                                                        data-bs-toggle="modal" data-bs-target="#centermodal"> + Agregar
+                                                        nueva lista</button></div>
                                             </div>
                                             <div class="modal fade" id="centermodal" tabindex="-1" role="dialog"
                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered text-start">
+                                                <div class="modal-dialog modal-dialog-centered text-start ">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h4 class="modal-title" id="myCenterModalLabel"> Agregar
@@ -173,7 +193,7 @@ if (isset($_GET['lista'])) {
                                                                                     <?php endforeach ?>
                                                                                 </select>
                                                                             </div>
-                                                                            <div class="col-12 mt-2">
+                                                                            <div class="col-6 mt-2">
                                                                                 <label class="form-label"
                                                                                     for="semestre">Semestre:</label>
                                                                                 <select name="semestre"
@@ -201,6 +221,23 @@ if (isset($_GET['lista'])) {
                                                                                         (Noveno) </option>
                                                                                     <option value="X (Decimo)"> X
                                                                                         (Decimo) </option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-6 mt-2">
+                                                                                <label for="periodo" class="form-label">Periodo:</label>
+                                                                                <select class="form-select "
+                                                                                    aria-label="Default select example" name="periodo">
+                                                                                    <option selected value="">Periodo</option>
+                                                                                    <?php 
+                                                                                        foreach($periodos as $periodo){
+                                                                                    ?>
+                                                                                    <option
+                                                                                        value="<?php echo $periodo['id']; ?>">
+                                                                                        <?php echo $periodo['nombre']; ?>
+                                                                                    </option>
+                                                                                    <?php
+                                                    }
+                                                    ?>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="col-12 mt-2">
@@ -254,6 +291,7 @@ if (isset($_GET['lista'])) {
                                                 <tr>
                                                     <th class="text-start ps-3">Nombre</th>
                                                     <th class="text-start"> Modulo</th>
+                                                    <th class="text-start"> Periodo</th>
                                                     <th>Semestre</th>
                                                     <th> Estudiantes</th>
                                                     <th>Fecha de añadido</th>
@@ -283,10 +321,23 @@ if (isset($_GET['lista'])) {
                                                                     ?>
                                                     </td>
 
+                                                    
+
+                                                    <td>
+                                                        
+                                                        <?php 
+                                                        $cperiodo = 'SELECT * FROM periodos WHERE id = ? ';
+                                                        $nperiodo = $mbd->prepare($cperiodo);
+                                                        $nperiodo->bindParam(1, $dato['id_periodo']);
+                                                        $nperiodo->execute();
+                                                        $nombre = $nperiodo->fetch();
+                                                        echo $nombre['nombre'];
+                                                        // var_dump($resultadocantidad);
+                                                             ?>
+                                                    </td>
                                                     <td>
                                                         <?php echo $dato['semestre']; ?>
                                                     </td>
-
                                                     <td>
                                                         <?php
                                                                     $cantidad = 'SELECT * from estudiantes WHERE id_lista = ? ';
@@ -361,6 +412,8 @@ if (isset($_GET['lista'])) {
             }
         });
     });
+
+ 
     </script>
 
 </body>

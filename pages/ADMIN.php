@@ -112,7 +112,10 @@ if(!$_GET){
     </div>
     <?php include "config/config-footer.php" ?>
     <script src="../assets/js/admin.js"></script>
-    <script>
+    <?php 
+    if($filas > 10){
+        ?>
+        <script>
         $(document).ready(function() {
             $('#tabla1').DataTable({
             scrollCollapse: true,
@@ -141,6 +144,9 @@ if(!$_GET){
         });
     });
     </script>
+        <?php
+    }
+    ?>
 </body>
 
 </html>
