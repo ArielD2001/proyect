@@ -240,9 +240,22 @@ $(document).ready( function () {
 } );
 
 $('#select-periodo').on('change',()=>{
-
+  var id_modulo = document.getElementById('select-periodo').getAttribute('data-idmodulo');
+  var id_user = document.getElementById('select-periodo').getAttribute('data-iduser');
   var periodo = $('#select-periodo').val()
-  $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo)
+  
+  if(id_user){
+    $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo+'&id='+id_modulo+'&iduser='+id_user);
+  }else{
+    if(id_modulo){
+    $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo+'&id='+id_modulo);
+
+    }else{
+    $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo);
+
+    }
+  }
+  
   
 })
 
@@ -268,17 +281,35 @@ function verificarCampos() {
   } else {
     document.getElementById("nombre-list").style.border = "1px solid #64BB62";
   }
+
   if (document.getElementById("modulo-list").value == "") {
     document.getElementById("modulo-list").style.border = "1px solid #F56547";
   } else {
     document.getElementById("modulo-list").style.border = "1px solid #64BB62";
   }
 
+  if (document.getElementById("profesor-list").value == "") {
+    document.getElementById("profesor-list").style.border = "1px solid #F56547";
+  } else {
+    document.getElementById("profesor-list").style.border = "1px solid #64BB62";
+  }
+
+  
+
   if (document.getElementById("semestre-list").value == "") {
     document.getElementById("semestre-list").style.border = "1px solid #F56547";
   } else {
     document.getElementById("semestre-list").style.border = "1px solid #64BB62";
   }
+
+  if (document.getElementById("periodo-list").value == "") {
+    document.getElementById("periodo-list").style.border = "1px solid #F56547";
+  } else {
+    document.getElementById("periodo-list").style.border = "1px solid #64BB62";
+  }
+
+  
+
 
   if (document.getElementById("adjunto").value == "") {
     document.getElementById("adjunto").style.border = "1px solid #F56547";

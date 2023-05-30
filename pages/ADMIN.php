@@ -33,9 +33,13 @@ if(!$_GET){
     $admin = true;
 }else{
     if(isset($_GET['u'])){
-        $usuarios = true;
-    }else{
-        $periodos = true;
+        $u = true;
+
+        if($_GET['u'] != 1){
+            include('admins/config/table-user.php');
+        }
+    }else if(isset($_GET['p'])){
+        $p = true;
     }
 }
 
@@ -80,7 +84,24 @@ if(!$_GET){
                                 <div class="hora_hoy" style="display: inline;">00:00:00</div>
                             </span>
                         </div>
+                        <?php 
+                        if(isset($_GET['u'])){
+                            if($_GET['u'] != 1){
+                                ?>
+                                     <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item active"><a href="ADMIN.php?u=1">Usuarios</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        <?php echo ucwords($usuario['nombre']).' '.ucwords($usuario['apellido']) ?></li>
+                    
+                                </ol>
+                            </nav>
+                                <?php
+                            }
+                        }
+                        ?>
                     </div>
+                    
 
                     <div class="row">
                         <div class="col-12">

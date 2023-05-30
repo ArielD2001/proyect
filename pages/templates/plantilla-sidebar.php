@@ -35,13 +35,7 @@
                 </a>
 
             </li>
-            <li class="side-nav-item">
-                <a href="listas.php " aria-expanded="false" class="side-nav-link" <?php if(isset($listactive)){echo 'style="background:#fd7e14 !important; color:white"' ;} ?> >
-                    <i class="uil-key-skeleton"></i>
-                    <span> Listas </span>
-                </a>
 
-            </li>
             
 
             
@@ -117,15 +111,16 @@
                 <?php
             }else{
                 ?>
-                    <li class="side-nav-item">
+                  <li class="side-nav-item">
                 <a href="ADMIN.php" aria-expanded="false"  <?php if(isset($admin)){echo 'style="background:#fd7e14 !important; "';} ?> class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Inicio </span>
                 </a>
 
             </li>
+           
             <li class="side-nav-item">
-                <a href="ADMIN.php?u=1" aria-expanded="false" class="side-nav-link" <?php if(isset($usuarios)){echo 'style="background:#fd7e14 !important; color:white"' ;} ?> >
+                <a href="ADMIN.php?u=1" aria-expanded="false" class="side-nav-link" <?php if(isset($u)){echo 'style="background:#fd7e14 !important; color:white"' ;} ?> >
                     <i class="uil-key-skeleton"></i>
                     <span> Usuarios </span>
                 </a>
@@ -133,9 +128,17 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="ADMIN.php?p=1" aria-expanded="false" class="side-nav-link" <?php if(isset($periodos)){echo 'style="background:#fd7e14 !important; color:white"' ;} ?> >
+                <a href="ADMIN.php?p=1" aria-expanded="false" class="side-nav-link" <?php if(isset($p)){echo 'style="background:#fd7e14 !important; color:white"' ;} ?> >
                     <i class="uil-key-skeleton"></i>
                     <span> Periodos </span>
+                </a>
+
+            </li>
+          
+            <li class="side-nav-item">
+                <a href="listas.php " aria-expanded="false" class="side-nav-link" <?php if(isset($listactive)){echo 'style="background:#fd7e14 !important; color:white"' ;} ?> >
+                    <i class="uil-key-skeleton"></i>
+                    <span> Listas </span>
                 </a>
 
             </li>

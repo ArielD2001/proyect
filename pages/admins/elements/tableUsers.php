@@ -26,7 +26,7 @@
                     foreach($usuarios as $usuario){
                     ?>
         <tr class="p-0">
-            <td  class="fw-bold"><a href="users?u=<?php echo base64_encode($usuario['id']); ?>" class="text-info text-bold"><?php echo ucwords($usuario['nombre']).' '.ucwords($usuario['apellido']) ?></a></td>
+            <td  class="fw-bold text-info"><?php echo ucwords($usuario['nombre']).' '.ucwords($usuario['apellido']) ?></td>
             <td ><?php echo $usuario['correo'] ?></td>
             <!-- <td ><input type="password" readonly class="border-0 bg-transparent" value="<?php echo $usuario['clave'] ?>"></td> -->
             <td  class="text-center"><?php echo $usuario['documento'] ?></td>
