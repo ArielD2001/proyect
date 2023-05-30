@@ -72,10 +72,11 @@ $pypactive = true;
                             <div class="card">
                                 <div class="card-body">
                                 <div class="row">
-                                <?php include('config/filtro.php') ;?>
-                                <div class="col-9 h3 pe-5 text-end">
+                                <div class="col-9 h3 pe-5">
                                     Listas
                                 </div>
+                                <?php include('config/filtro.php') ;?>
+                                
                                </div>
                                         <?php include('config/table-modulo.php') ;?>
                                 </div>

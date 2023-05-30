@@ -51,14 +51,14 @@
 <li class="side-nav-item">
     <a href="2activbasicas" class="side-nav-link" <?php if(isset($actactive)){echo 'style="background:#fd7e14 !important"';} ?> >
         <i class="uil-comments-alt"></i>
-        <span> Actividades Básicas </span>
+        <span> Actividades básicas </span>
     </a>
 </li>
 
 <li class="side-nav-item">
     <a href="3cuimedico" aria-expanded="false" <?php if(isset($cuiactive)){echo 'style="background:#fd7e14 !important"';} ?> aria-controls="sidebarEcommerce" class="side-nav-link">
         <i class="uil-store"></i>
-        <span> Cuidado medico </span>
+        <span> Cuidado médico quirúrgico </span>
 
     </a>
 
@@ -74,7 +74,7 @@
 <li class="side-nav-item">
     <a href="5practicaadmin" <?php if(isset($pracactive)){echo 'style="background:#fd7e14 !important"';} ?> aria-expanded="false" aria-controls="sidebarProjects" class="side-nav-link">
         <i class="uil-briefcase"></i>
-        <span> Practica administracion </span>
+        <span> Practica administración </span>
 
     </a>
 </li>
@@ -98,14 +98,14 @@
 <li class="side-nav-item">
     <a href="8fundamentos4" <?php if(isset($ivactive)){echo 'style="background:#fd7e14 !important"';} ?> class="side-nav-link">
         <i class="uil-folder-plus"></i>
-        <span> IV Fundamentos socio Educativo  </span>
+        <span> IV Fundamentos socio educativo  </span>
     </a>
 </li>
 
 <li class="side-nav-item">
     <a href="9fundamentos5" <?php if(isset($vactive)){echo 'style="background:#fd7e14 !important"';} ?> class="side-nav-link">
         <i class="uil-folder-plus"></i>
-        <span>V Fundamentos socio Educativo  </span>
+        <span>V Fundamentos socio educativo  </span>
     </a>
 </li>
                 <?php
@@ -161,7 +161,7 @@
 <li class="side-nav-item">
     <a href="3cuimedico" aria-expanded="false" <?php if(isset($cuiactive)){echo 'style="background:#fd7e14 !important"';} ?> aria-controls="sidebarEcommerce" class="side-nav-link">
         <i class="uil-store"></i>
-        <span> Cuidado medico </span>
+        <span> Cuidado médico quirúrgico </span>
 
     </a>
 
@@ -201,14 +201,14 @@
 <li class="side-nav-item">
     <a href="8fundamentos4" <?php if(isset($ivactive)){echo 'style="background:#fd7e14 !important"';} ?> class="side-nav-link">
         <i class="uil-folder-plus"></i>
-        <span> IV Fundamentos socio Educativo  </span>
+        <span> IV Fundamentos socio educativo  </span>
     </a>
 </li>
 
 <li class="side-nav-item">
     <a href="9fundamentos5" <?php if(isset($vactive)){echo 'style="background:#fd7e14 !important"';} ?> class="side-nav-link">
         <i class="uil-folder-plus"></i>
-        <span>V Fundamentos socio Educativo  </span>
+        <span>V Fundamentos socio educativo  </span>
     </a>
 </li>
                 <?php

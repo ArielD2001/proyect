@@ -101,7 +101,7 @@ if (isset($_GET['code'])) {
                     </label>
                     <input
                         class="border-gray-300 campo shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username" minlength="8" type="email" placeholder="Username" autocomplete="off" name="email">
+                        id="username" minlength="8" type="email" placeholder="usuario@email.com" autocomplete="off" name="email">
                 </div>
                 <div class="relative">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -119,12 +119,12 @@ if (isset($_GET['code'])) {
                     <button id="boton-login"
                         class="mt-6 transition  duration-100 hover:text-white hover:bg-yellow-600 block border border-yellow-600 w-full  py-2 px-4 rounded focus:outline-none focus:bg-yellow-600 focus:text-white  bg-white text-yellow-600 font-bold"
                         type="button" name="boton">
-                        Iniciar sesion
+                        Iniciar sesión
                     </button>
                     <a href="<?php echo $client->createAuthUrl() ?>"> <button
                             class=" transition  duration-100 mt-2 text-white hover:bg-gray-900 block border  w-full  py-2 px-4 rounded focus:outline-none bg-gray-800  "
                             type="button">
-                            <i class="fa-brands fa-google mr-2"></i>Iniciar sesion con Google
+                            <i class="fa-brands fa-google mr-2"></i>Iniciar sesión con Google
                         </button> </a>
                     <!-- <div class="block text-center my-2 text-xs">Or</div>
                         <a href="singup" class="bg-blue-600 block rounded p-2 text-white text-center hover:bg-blue-700 transition duration-100">Crear cuenta</a> -->
@@ -134,11 +134,12 @@ if (isset($_GET['code'])) {
             </form>
 
             <p class="text-center text-gray-700 text-xs">
-                Ariel Caraballo Diaz - Jesus Valencia Torres
+                Ariel Caraballo Díaz - Jesús Valencia Torres
             </p>
             <p class="text-center text-gray-700 text-xs">
-                &copy;2022 CURN - Proyecto de grado VI semestr e.
+                &copy;2022 CURN - Proyecto de grado VI semestre.
             </p>
+            
         </div>
     </div>
     <img src="assets/images/svg.png" draggable="false" alt=""

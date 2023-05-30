@@ -8,8 +8,19 @@ include_once('databases/connectToBD.php');
 
 //Verificacion de Sesion
 include('config/validatesesion.php');
+//Modulos
+include('config/sqlmodulos.php');
+
+//Listas
+
+//periodos
+
+include('config/periodos.php');
+
+include('config/profesores.php');
 
 $idmodulo = 3;
+include('config/sqllistas.php');
 include('config/listas-modulo.php');
 
 $cuiactive = true;
@@ -46,7 +57,7 @@ $cuiactive = true;
                 <div class="contenedor">
                     <div class="row   px-3 my-3">
                         <div class="col-6  ">
-                            <h3>Cuidado medico quirurgico</h3>
+                            <h3>Cuidado médico quirúrgico</h3>
                         </div>
                         <div class="col-6 justify-content-end  d-flex align-items-center">
                             <span class="h6"><?php echo date('d/m/y') . ' - ' ?>
@@ -59,7 +70,14 @@ $cuiactive = true;
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                <?php include('config/table-modulo.php') ;?>
+                                <div class="row">
+                                <div class="col-9 h3 pe-5">
+                                    Listas
+                               </div>
+                               <?php include('config/filtro.php') ;?>
+                               
+                               </div>
+                                    <?php include('config/table-modulo.php') ;?>
 
                                 </div>
                             </div>

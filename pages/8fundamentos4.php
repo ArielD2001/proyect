@@ -1,5 +1,4 @@
 <?php 
-
 //Loader
 include('../assets/loader.html');
 
@@ -8,8 +7,19 @@ include_once('databases/connectToBD.php');
 
 //Verificacion de Sesion
 include('config/validatesesion.php');
+//Modulos
+include('config/sqlmodulos.php');
 
-$idmodulo=8;
+//Listas
+
+//periodos
+
+include('config/periodos.php');
+
+include('config/profesores.php');
+
+$idmodulo = 8;
+include('config/sqllistas.php');
 include('config/listas-modulo.php');
 
 $ivactive =true;
@@ -61,6 +71,13 @@ $ivactive =true;
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
+                                <div class="row">
+                                <div class="col-9 h3 pe-5">
+                                    Listas
+                               </div>
+                               <?php include('config/filtro.php') ;?>
+                               
+                               </div>
                                 <?php include('config/table-modulo.php') ;?>
 
                                 </div>

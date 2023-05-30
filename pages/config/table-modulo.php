@@ -5,10 +5,10 @@
                                             <thead class="text-center bg-dark text-white">
                                                 <tr>
                                                     <th class="text-start ps-3">Nombre</th>
-                                                    <th class="text-start"> Modulo</th>
+                                                    <th class="text-start"> Módulo</th>
                                                     <th class="text-start"> Periodo</th>
-                                                    <th>Semest  re</th>
-                                                    <th> Profesor</th>
+                                                    <th>Semestre</th>
+                                                    <th>Profesor</th>
                                                     <th>Fecha de añadido</th>
                                                     <th>Opciones</th>
                                                 </tr>
@@ -88,9 +88,10 @@
 <?php } else { ?>
 <div class="w-100 text-center">
     <img src="../assets/images/layouts/not-found.png" width="200" alt="">
-    <h4>No hay listas en este modulo</h4>
-    <?php echo (isset($_SESSION['id']) ? '<p>Agregue una nueva en la pagina de Listas</p>' : '<p>Ningun profesor a subido una lista a este modulo</p>') ;?>
+    <h4>No hay listas en este módulo</h4>
+    
+    <?php //echo (isset($_SESSION['id']) ? '<p>Agregue una nueva en la pagina de Listas</p>' : '<p>Ningun profesor a subido una lista a este modulo</p>') ;?>
 
-    <?php echo (isset($_SESSION['id']) ? '<a href="listas" class="btn btn-success">Agregar</a>' : '') ?>
+    <?php //echo (isset($_SESSION['id']) ? '<a href="listas" class="btn btn-success">Agregar</a>' : '') ?>
 </div>
 <?php } ?>
