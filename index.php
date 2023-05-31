@@ -133,11 +133,9 @@ if (isset($_GET['code'])) {
 
             </form>
 
+            
             <p class="text-center text-gray-700 text-xs">
-                Ariel Caraballo Díaz - Jesús Valencia Torres
-            </p>
-            <p class="text-center text-gray-700 text-xs">
-                &copy;2022 CURN - Proyecto de grado VI semestre.
+            Corporación Universitaria Rafael Núñez | Institución Universitaria | Vigilada Mineducación
             </p>
             
         </div>

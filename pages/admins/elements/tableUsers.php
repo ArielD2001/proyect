@@ -40,14 +40,14 @@
                 echo $filas
             ?></td>
             <td >
-                <div class="form-check form-switch m-0 d-flex justify-content-center">
+                <div class="form-check form-switch  m-0 d-flex justify-content-center">
                     <input class="form-check-input m-0 bg-ligth" type="checkbox" data-id="<?php echo $usuario['id'] ?>" role="switch" id="flexSwitchCheckDefault"
-                        <?php echo ($usuario['estado'] == 'activo' ? 'checked' : '') ?>>
+                        <?php echo ($usuario['estado'] == 'activo' ? 'checked' : '') ?> <?php echo ($usuario['id'] == $_SESSION['admin'] && $usuario['rol'] == 'ADMIN' ? 'disabled' : '') ?> >
                 </div>
             </td>
             <td  class="text-center">
-                
-            <button  id="button-delete-user" class="text-danger p-0 m-0 h4 border-0 bg-transparent "><i class="mdi mdi-delete"></i></button>
+            <?php echo ($usuario['id'] == $_SESSION['admin'] && $usuario['rol'] == 'ADMIN' ? '' : '  <button  id="button-delete-user" class="text-danger p-0 m-0 h4 border-0 bg-transparent "><i class="mdi mdi-delete"></i></button>') ?>
+          
             </td>
         </tr>
         <?php 

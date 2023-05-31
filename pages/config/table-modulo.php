@@ -8,18 +8,14 @@
                                                     <th class="text-start"> Módulo</th>
                                                     <th class="text-start"> Periodo</th>
                                                     <th>Semestre</th>
-                                                    <?php if(isset($_SESSION['admin'])){
-                                                    echo ' <th>Profesor</th>';
-                                                   } ?>
+                                                    <?php echo (isset($_SESSION['admin']) ? '<th>Profesor</th>' : '') ?>
 
-<?php if(isset($_SESSION['id'])){
-                                                    echo ' <th>Estudiantes</th>';
-                                                   } ?>
+                                                    <?php echo (isset($_SESSION['id']) ? '<th>estudiantes</th>' : '') ?>
+
 
                                                     <th>Fecha de añadido</th>
-                                                    <?php if(isset($_SESSION['admin'])){
-                                                    echo ' <th>Opciones</th>';
-                                                   } ?>
+                                                    <?php echo (isset($_SESSION['admin']) ? '<th>Opciones</th>' : '') ?>
+
                                                 </tr>
                                             </thead>
 
@@ -64,7 +60,7 @@
                                                     </td>
                                                     <?php if(isset($_SESSION['admin'])){?>
                                                         <td class="text-start">
-                    <?php
+                                                        <?php
                                                             $profesor = 'SELECT * from usuarios WHERE id = ? ';
                                                             $sentenciaprofesor = $mbd->prepare($profesor);
                                                             $sentenciaprofesor->bindParam(1, $dato['id_usuario']);
@@ -72,7 +68,7 @@
                                                             $nombrep =  $sentenciaprofesor->fetch();
                                                             echo ucwords($nombrep['nombre']).' '.ucwords($nombrep['apellido']);
                                                         ?>
-                </td>
+                                                        </td>
 
                                                     <?php }?>
 
@@ -119,8 +115,6 @@
     <img src="../assets/images/layouts/not-found.png" width="200" alt="">
     <h4>No hay listas en este módulo</h4>
     
-    <?php //echo (isset($_SESSION['id']) ? '<p>Agregue una nueva en la pagina de Listas</p>' : '<p>Ningun profesor a subido una lista a este modulo</p>') ;?>
-
-    <?php //echo (isset($_SESSION['id']) ? '<a href="listas" class="btn btn-success">Agregar</a>' : '') ?>
+ 
 </div>
 <?php } ?>

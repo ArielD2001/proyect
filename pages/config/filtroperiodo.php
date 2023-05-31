@@ -82,11 +82,10 @@ session_start();
             <th class="text-start"> Modulo</th>
             <th class="text-start"> Periodo</th>
             <th>Semestre</th>
-            <th> Estudiantes</th>
+            <?php echo (isset($_SESSION['admin']) ? '<th>Profesor</th>' : '') ?>
+            <?php echo (isset($_SESSION['id']) ? '<th>estudiantes</th>' : '') ?>
             <th>Fecha de añadido</th>
-            <?php if(isset($_SESSION['admin'])){
-                                                    echo ' <th>Opciones</th>';
-                                                   } ?>
+            <?php echo (isset($_SESSION['admin']) ? '<th>Opciones</th>' : '') ?>
         </tr>
     </thead>
 
@@ -129,16 +128,33 @@ session_start();
             <td>
                 <?php echo $dato['semestre']; ?>
             </td>
-            <td>
-                <?php
-                                                                    $cantidad = 'SELECT * from estudiantes WHERE id_lista = ? ';
-                                                                    $sentenciacantidad = $mbd->prepare($cantidad);
-                                                                    $sentenciacantidad->bindParam(1, $dato['id']);
-                                                                    $sentenciacantidad->execute();
-                                                                    $filascantidad = $sentenciacantidad->rowCount();
-                                                                    echo $filascantidad;
-                                                                    ?>
-            </td>
+            
+            <?php if(isset($_SESSION['id'])){?>
+                                                        <td class="text-start">
+                                                        <?php
+                                                            $cantidad = 'SELECT * from estudiantes WHERE id_lista = ? ';
+                                                            $sentenciacantidad = $mbd->prepare($cantidad);
+                                                            $sentenciacantidad->bindParam(1, $dato['id']);
+                                                            $sentenciacantidad->execute();
+                                                            $filascantidad = $sentenciacantidad->rowCount();
+                                                            echo $filascantidad;
+                                                        ?>
+                                                    </td>
+
+                                                    <?php }?>
+                                                    <?php if(isset($_SESSION['admin'])){?>
+                                                        <td class="text-start">
+                                                        <?php
+                                                            $profesor = 'SELECT * from usuarios WHERE id = ? ';
+                                                            $sentenciaprofesor = $mbd->prepare($profesor);
+                                                            $sentenciaprofesor->bindParam(1, $dato['id_usuario']);
+                                                            $sentenciaprofesor->execute();
+                                                            $nombrep =  $sentenciaprofesor->fetch();
+                                                            echo ucwords($nombrep['nombre']).' '.ucwords($nombrep['apellido']);
+                                                        ?>
+                                                    </td>
+
+                                                    <?php }?>
 
             <td>
                 <?php echo $dato['fecha']; ?>

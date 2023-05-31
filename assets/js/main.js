@@ -242,15 +242,17 @@ $(document).ready( function () {
 $('#select-periodo').on('change',()=>{
   var id_modulo = document.getElementById('select-periodo').getAttribute('data-idmodulo');
   var periodo = $('#select-periodo').val()
-  
+  $('#tabla-list').load('../assets/loader2.html')
  
+   setTimeout(() => {
     if(id_modulo){
-    $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo+'&id='+id_modulo);
-
-    }else{
-    $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo);
-
-    }
+      $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo+'&id='+id_modulo);
+  
+      }else{
+      $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo);
+  
+      }
+   }, 1000);
 
   
 })
