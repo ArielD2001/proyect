@@ -2,47 +2,76 @@
 require_once('../databases/connectToBD.php');
 session_start();
         $usuario = isset($_SESSION['id']) ? $_SESSION['id'] : $_SESSION['admin'];
-    if(strlen($_GET['periodo'])>0){
-        
-        if(isset($_GET['id'])){
+    if(isset($_SESSION['id'])){
+
+        if(strlen($_GET['periodo'])> 0){
+                $idmodulo = $_GET['id'];
+                $consultal = 'SELECT * FROM listas WHERE  id_periodo = ? AND id_modulo = ? AND id_usuario = ?';
+                $sentencialistas = $mbd->prepare($consultal);
+                $sentencialistas->bindParam(1, $_GET['periodo']);
+                $sentencialistas->bindParam(2, $idmodulo);
+                $sentencialistas->bindParam(3, $usuario);
+                $sentencialistas->execute();
+                $datos = $sentencialistas->fetchAll();
+                $filas = $sentencialistas->rowCount();
+      }else{
             $idmodulo = $_GET['id'];
-            $consultal = 'SELECT * FROM listas WHERE  id_periodo = ? AND id_modulo = ?';
-        $sentencialistas = $mbd->prepare($consultal);
-        $sentencialistas->bindParam(1, $_GET['periodo']);
-        $sentencialistas->bindParam(2, $idmodulo);
-        $sentencialistas->execute();
-        $datos = $sentencialistas->fetchAll();
-    $filas = $sentencialistas->rowCount();
+            $consultal = 'SELECT * FROM listas WHERE id_modulo = ? AND id_usuario = ?';
+            $sentencialistas = $mbd->prepare($consultal);
+            $sentencialistas->bindParam(1, $idmodulo);
+            $sentencialistas->bindParam(2, $usuario);
+            $sentencialistas->execute();
+            $datos = $sentencialistas->fetchAll();
+            $filas = $sentencialistas->rowCount();
+    
+        
+      }
 
-        }else{
-            $consultal = 'SELECT * FROM listas WHERE id_periodo = ?';
-        $sentencialistas = $mbd->prepare($consultal);
-        $sentencialistas->bindParam(1, $_GET['periodo']);
-        $sentencialistas->execute();
-        $datos = $sentencialistas->fetchAll();
-    $filas = $sentencialistas->rowCount();
 
-        }
-  
-  }else{
-    if(isset($_GET['id'])){
-        $idmodulo = $_GET['id'];
-
-        $consultal = 'SELECT * FROM listas WHERE id_modulo = ?';
-    $sentencialistas = $mbd->prepare($consultal);
-    $sentencialistas->bindParam(1, $idmodulo);
-    $sentencialistas->execute();
-    $datos = $sentencialistas->fetchAll();
-    $filas = $sentencialistas->rowCount();
 
     }else{
-        $consultal = 'SELECT * FROM listas';
-    $sentencialistas = $mbd->prepare($consultal);
-    $sentencialistas->execute();
-    $datos = $sentencialistas->fetchAll();
-    $filas = $sentencialistas->rowCount();
+        if(strlen($_GET['periodo'])>0){
+        
+            if(isset($_GET['id'])){
+                $idmodulo = $_GET['id'];
+                $consultal = 'SELECT * FROM listas WHERE  id_periodo = ? AND id_modulo = ?';
+            $sentencialistas = $mbd->prepare($consultal);
+            $sentencialistas->bindParam(1, $_GET['periodo']);
+            $sentencialistas->bindParam(2, $idmodulo);
+            $sentencialistas->execute();
+            $datos = $sentencialistas->fetchAll();
+        $filas = $sentencialistas->rowCount();
+    
+            }else{
+                $consultal = 'SELECT * FROM listas WHERE id_periodo = ?';
+            $sentencialistas = $mbd->prepare($consultal);
+            $sentencialistas->bindParam(1, $_GET['periodo']);
+            $sentencialistas->execute();
+            $datos = $sentencialistas->fetchAll();
+        $filas = $sentencialistas->rowCount();
+    
+            }
+      
+      }else{
+        if(isset($_GET['id'])){
+            $idmodulo = $_GET['id'];
+    
+            $consultal = 'SELECT * FROM listas WHERE id_modulo = ?';
+        $sentencialistas = $mbd->prepare($consultal);
+        $sentencialistas->bindParam(1, $idmodulo);
+        $sentencialistas->execute();
+        $datos = $sentencialistas->fetchAll();
+        $filas = $sentencialistas->rowCount();
+    
+        }else{
+            $consultal = 'SELECT * FROM listas';
+        $sentencialistas = $mbd->prepare($consultal);
+        $sentencialistas->execute();
+        $datos = $sentencialistas->fetchAll();
+        $filas = $sentencialistas->rowCount();
+        }
+      }
     }
-  }
   if($filas > 0){
     ?>
         <table class="table table-sm table-centered mb-5 py-3 w-100"
@@ -55,7 +84,9 @@ session_start();
             <th>Semestre</th>
             <th> Estudiantes</th>
             <th>Fecha de añadido</th>
-            <th>Opciones</th>
+            <?php if(isset($_SESSION['admin'])){
+                                                    echo ' <th>Opciones</th>';
+                                                   } ?>
         </tr>
     </thead>
 
@@ -112,10 +143,12 @@ session_start();
             <td>
                 <?php echo $dato['fecha']; ?>
             </td>
+        <?php if(isset($_SESSION['admin'])){ ?>
             <td>
                 <a href="list=<?php echo base64_encode($dato['id']) ?>" id="button-delete-list"
                     class="text-danger btn border eliminar-btn"><i class="mdi mdi-delete"></i></a>
             </td>
+            <?php  } ?>
 
         </tr>
 

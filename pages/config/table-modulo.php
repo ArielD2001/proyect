@@ -8,9 +8,18 @@
                                                     <th class="text-start"> Módulo</th>
                                                     <th class="text-start"> Periodo</th>
                                                     <th>Semestre</th>
-                                                    <th>Profesor</th>
+                                                    <?php if(isset($_SESSION['admin'])){
+                                                    echo ' <th>Profesor</th>';
+                                                   } ?>
+
+<?php if(isset($_SESSION['id'])){
+                                                    echo ' <th>Estudiantes</th>';
+                                                   } ?>
+
                                                     <th>Fecha de añadido</th>
-                                                    <th>Opciones</th>
+                                                    <?php if(isset($_SESSION['admin'])){
+                                                    echo ' <th>Opciones</th>';
+                                                   } ?>
                                                 </tr>
                                             </thead>
 
@@ -53,7 +62,8 @@
                                                     <td>
                                                         <?php echo $dato['semestre']; ?>
                                                     </td>
-                                                    <td class="text-start">
+                                                    <?php if(isset($_SESSION['admin'])){?>
+                                                        <td class="text-start">
                     <?php
                                                             $profesor = 'SELECT * from usuarios WHERE id = ? ';
                                                             $sentenciaprofesor = $mbd->prepare($profesor);
@@ -64,15 +74,34 @@
                                                         ?>
                 </td>
 
+                                                    <?php }?>
+
+
+
+                                                    <?php if(isset($_SESSION['id'])){?>
+                                                        <td class="text-center">
+                                                         <?php
+                                                            $cantidad = 'SELECT * from estudiantes WHERE id_lista = ? ';
+                                                            $sentenciacantidad = $mbd->prepare($cantidad);
+                                                            $sentenciacantidad->bindParam(1, $dato['id']);
+                                                            $sentenciacantidad->execute();
+                                                            $filascantidad = $sentenciacantidad->rowCount();
+                                                            echo $filascantidad;
+                                                        ?>
+                                                     </td>
+
+                                                    <?php }?>
                                                     <td>
                                                         <?php echo $dato['fecha']; ?>
                                                     </td>
-                                                    <td>
+                                                    <?php if(isset($_SESSION['admin'])){ ?>
+                                                        <td>
                                                         <a href="list=<?php echo base64_encode($dato['id']) ?>"
                                                             id="button-delete-list"
                                                             class="text-danger btn border eliminar-btn"><i
                                                                 class="mdi mdi-delete"></i></a>
                                                     </td>
+                                                    <?php } ?>
 
                                                 </tr>
 

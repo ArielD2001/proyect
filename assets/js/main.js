@@ -241,12 +241,9 @@ $(document).ready( function () {
 
 $('#select-periodo').on('change',()=>{
   var id_modulo = document.getElementById('select-periodo').getAttribute('data-idmodulo');
-  var id_user = document.getElementById('select-periodo').getAttribute('data-iduser');
   var periodo = $('#select-periodo').val()
   
-  if(id_user){
-    $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo+'&id='+id_modulo+'&iduser='+id_user);
-  }else{
+ 
     if(id_modulo){
     $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo+'&id='+id_modulo);
 
@@ -254,8 +251,7 @@ $('#select-periodo').on('change',()=>{
     $('#tabla-list').load('config/filtroperiodo.php?periodo='+periodo);
 
     }
-  }
-  
+
   
 })
 

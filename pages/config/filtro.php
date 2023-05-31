@@ -1,6 +1,6 @@
                                                 <div class="col-3">
 
-                                                    <select class="form-select " data-idmodulo="<?php echo $idmodulo; ?>"  aria-label="Default select example" id="select-periodo">
+                                                    <select class="form-select " <?php echo (isset($idmodulo) ? 'data-idmodulo="'.$idmodulo.'"' : '' ) ?>  aria-label="Default select example" id="select-periodo">
                                                         <option selected value="">Todos los periodos</option>
                                                         <?php 
                                                     foreach($periodos as $periodo){
